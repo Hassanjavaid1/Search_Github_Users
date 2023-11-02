@@ -1,0 +1,8 @@
+@media (max-width:1000px){
+    :root{
+        font-size: 90%;
+    }
+    form{
+        gap: 20rem!important;
+    }
+}

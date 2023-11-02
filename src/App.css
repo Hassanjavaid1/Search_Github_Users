@@ -1,0 +1,13 @@
+
+
+body{
+  background-image: url('./Photos/background.jpg');
+  background-repeat: no-repeat;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+html{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

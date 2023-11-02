@@ -1,0 +1,52 @@
+#homeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+    gap: 1rem;
+    position: absolute;
+}
+#hassanjavaid{
+    height: 25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 3px 3px #3e2f3b;
+}
+span{
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.span_content{
+    font-weight: 500;
+    font-family: math;
+}
+.mainContent{
+    display: flex;
+    justify-content: center;
+}
+.homeContent{
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-left: 2rem;
+}
+h1{
+    font-family: sans-serif;
+    text-shadow: 1px 1px #ffecec;
+    font-weight: bold;
+}
+#developer{
+    font-size: 1.3rem;
+    display: block;
+    text-align: center;
+    line-height: 2;
+    opacity: 0.5;
+    color: black;
+    font-weight: bolder;
+}
+a{
+    color: white;
+    font-size: 2.3rem;
+}
+a:hover{
+    filter: brightness(0.8);
+}
