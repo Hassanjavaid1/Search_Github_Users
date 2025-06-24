@@ -1,13 +1,21 @@
-
-
-body{
-  background-image: url('./Photos/background.jpg');
-  background-repeat: no-repeat;
+body {
+  background: #2a7b9b;
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 1) 50%,
+    rgba(237, 221, 83, 1) 100%
+  );
   overflow-y: auto;
   overflow-x: hidden;
+
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
-html{
+html {
   overflow-y: scroll;
   overflow-x: hidden;
 }

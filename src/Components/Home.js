@@ -1,117 +1,120 @@
-import React, { useContext, useState } from "react";
-import hassanjavaid from "../Photos/Hassanjavaid.jpeg";
-import "../CSS/Home.css";
-import "../CSS/HomeQuery.css";
-import no_image_avaliale from "../Photos/no-image-available.jpg";
+import { useContext } from "react";
+import "../css/Home.css";
+import "../css/HomeQuery.css";
 import { MyContext } from "./MyContext";
+import Loader from "./Loader";
 
 export default function Home() {
-  const { data, setData, setelement, element, searchQuery, setsearchquery } =
-    useContext(MyContext);
-  let date = new Date(data.updated_at);
-  let getyear = date.getFullYear();
-  let getmonth = date.getMonth();
-  let getday = date.getDay();
+  const { data, loader } = useContext(MyContext);
+  const {
+    avatar_url,
+    bio,
+    company,
+    name,
+    login,
+    email,
+    followers,
+    following,
+    location,
+    public_repos,
+    updated_at,
+    created_at,
+  } = data;
   return (
-    <>
-      <div className="mainContent">
-        <div id="homeContainer">
-          {searchQuery == "" ||
-          searchQuery == null ||
-          searchQuery == undefined ? (
-            <h1>
-              Search Github User!
-              <span id="developer">Developed by Hassanjavaid!</span>
-            </h1>
-          ) : (
-            <>
-              <div className="home_img">
-                <img
-                  src={
-                    data.avatar_url === null ||
-                    data.avatar_url == undefined ||
-                    data.avatar_url == ""
-                      ? no_image_avaliale
-                      : data.avatar_url
-                  }
-                  alt=""
-                  id="hassanjavaid"
-                />
+    <section className="sectionContent">
+      {data == "" ? (
+        <h1 style={{ textAlign: "center", marginTop: "10rem" }}>
+          Type the name of a person you want to find.
+        </h1>
+      ) : loader ? (
+        <Loader />
+      ) : data == null || data.status == "404" ? (
+        <h1 style={{ textAlign: "center", marginTop: "10rem" }}>
+          No result found!
+        </h1>
+      ) : (
+        <div className="mainContent">
+          <img src={avatar_url} alt="" id="userImg" />
+          <div className="homeContent">
+            <h3 className="content">
+              <div>
+                <span>Name: </span>
+                <span className="font-500">
+                  {" "}
+                  {name || login || "Not available"}
+                </span>
               </div>
-              <div className="homeContent">
-                <h3 className="name">
-                  <span>Name:</span>{" "}
-                  {data.name == null || undefined || ""
-                    ? "No Info..."
-                    : data.name}
-                </h3>
-                <p className="bio">
-                  <span>Bio:</span>{" "}
-                  {data.bio == null || undefined || ""
-                    ? "No Info..."
-                    : data.bio}
-                </p>
-                <p className="email">
-                  <span>Email:</span>{" "}
-                  {data.email == null || undefined || ""
-                    ? "No Email Info..."
-                    : data.email}
-                </p>
-                <p className="span_content">
-                  <span>Follower:</span>{" "}
-                  {data.followers == null || undefined || ""
-                    ? "No Info..."
-                    : data.followers}{" "}
-                  <span className="span_content">
-                    <span>Following:</span>{" "}
-                    {data.following == null || undefined || ""
-                      ? "No Info..."
-                      : data.following}
-                  </span>
-                </p>
-                <p className="location">
-                  <span>Location:</span>{" "}
-                  {data.location == null || undefined || ""
-                    ? "No Info..."
-                    : data.location}{" "}
-                  <span className="span_content">
-                    <span>Company:</span>{" "}
-                    {data.company == null || undefined || ""
-                      ? "No Info..."
-                      : data.company}
-                  </span>
-                </p>
-                <p className="login">
-                  <span>Login as:</span>{" "}
-                  {data.login == null || undefined || ""
-                    ? "No Info..."
-                    : data.login}{" "}
-                  <span className="span_content">
-                    <span>Public Repos:</span>{" "}
-                    {data.public_repos == null || undefined || ""
-                      ? "No Info..."
-                      : data.public_repos}
-                  </span>
-                </p>
-                <p className="span_content">
-                  <span>Account Created:</span>{" "}
-                  {parseInt(
-                    data.created_at == null || undefined || ""
-                      ? "No Info..."
-                      : data.created_at
-                  )}{" "}
-                  <span className="span_content">
-                    <span>Updated at:</span>{" "}
-                    {data.updated_at == null || undefined || ""
-                      ? "No Info..."
-                      : `${getday}/${getmonth}/${getyear}`}
-                  </span>
-                </p>
+            </h3>
+            <p className="content">
+              <div>
+                <span>Bio: </span>
+                <span className="font-500"> {bio || "Not available"}</span>
               </div>
-            </>
-          )}
+            </p>
+            <p className="content">
+              <div>
+                <span>Email: </span>
+                <span className="font-500"> {email || "Not available"}</span>
+              </div>
+            </p>
+            <p className="content">
+              <div>
+                <span>Follower: </span>
+                <span className="font-500">
+                  {" "}
+                  {followers || "Not available"}
+                </span>
+              </div>
+              <span className="span_content">
+                <span>Following: </span>
+                <span className="font-500">
+                  {" "}
+                  {following || "Not available"}
+                </span>
+              </span>
+            </p>
+            <p className="content">
+              <div>
+                <span>Location: </span>
+                <span className="font-500"> {location || "Not available"}</span>
+              </div>
+              <span className="span_content">
+                <span>Company: </span>
+                <span className="font-500"> {company || "Not available"}</span>
+              </span>
+            </p>
+            <p className="content">
+              <div>
+                <span>Login as: </span>
+                <span className="font-500"> {login || "Not available"}</span>
+              </div>
+              <span className="content">
+                <span>Public Repos: </span>
+                <span className="font-500">
+                  {" "}
+                  {public_repos || "Not available"}
+                </span>
+              </span>
+            </p>
+            <p className="content">
+              <div>
+                <span>Account Created: </span>
+                <span className="font-500">
+                  {" "}
+                  {new Date(created_at).toDateString() || "Not available"}
+                </span>
+              </div>
+              <span className="span_content">
+                <span>Updated at: </span>
+                <span className="font-500">
+                  {" "}
+                  {new Date(updated_at).toDateString() || "Not available"}
+                </span>
+              </span>
+            </p>
+          </div>
         </div>
-      </div>
-    </>
+      )}
+    </section>
   );
 }

@@ -1,56 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../CSS/Navbar.css";
-import "../CSS/HomeQuery.css";
+import "../css/Navbar.css";
+import "../css/HomeQuery.css";
 import { BsGithub } from "react-icons/bs";
 import LoadingBar from "react-top-loading-bar";
 import { MyContext } from "./MyContext";
 
 export default function Navbar() {
-  const { data, setData, searchQuery, setsearchquery, element, setelement } =
+  const { searchQuery, setSearchQuery, fetchGithubUser } =
     useContext(MyContext);
   const [progress, setProgress] = useState(0);
 
-  const handleOnClick = async () => {
-    setProgress(progress + 10);
-    const response = await fetch(`https://api.github.com/users/${searchQuery}`);
-    setProgress(progress + 20);
-    const res = await response.json();
-    setData(res);
-    setsearchquery(res);
-    setProgress(progress + 100);
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    //Call API Function.
+    fetchGithubUser();
   };
-  const handleOnChange = (e) => {
-    setsearchquery(e.target.value);
-  };
-  useEffect(() => {
-    handleOnClick();
-  }, []);
 
   return (
     <>
       <div className="container">
-        <form action="" onSubmit={(e) => e.preventDefault()}>
-          <h2>
-            <a
-              href="https://github.com/Hassanjavaid1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BsGithub />
-            </a>
-            Hassanjavaid
-          </h2>
-          <div>
-            <input
-              type="text"
-              value={element}
-              onChange={handleOnChange}
-              placeholder="Search github..."
-            />
-            <button id="btn" onClick={handleOnClick}>
-              Search
-            </button>
-          </div>
+        <div className="heading">
+          <BsGithub />
+          <h1>Search Github</h1>
+        </div>
+
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="SEARCH GITHUB..."
+            className="inputField"
+          />
+          <button id="btn">Search</button>
         </form>
       </div>
       <LoadingBar
